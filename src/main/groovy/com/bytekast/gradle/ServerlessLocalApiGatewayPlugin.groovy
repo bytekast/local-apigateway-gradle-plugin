@@ -68,7 +68,9 @@ class ServerlessLocalApiGatewayPlugin implements Plugin<Project> {
         def dir = File.newInstance("${p.projectDir}/src/ratpack")
         dir.mkdirs()
         def file = File.newInstance(dir, 'ratpack.groovy')
-        file.text = ServerlessLocalApiGatewayPlugin.class.getResourceAsStream('/ratpack.groovy').text
+        if (!file.exists()) {
+          file.text = ServerlessLocalApiGatewayPlugin.class.getResourceAsStream('/ratpack.groovy').text
+        }
       }
     }
   }
