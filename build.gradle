@@ -3,6 +3,7 @@ plugins {
   id 'groovy'
   id 'maven-publish'
   id 'net.researchgate.release' version '2.6.0'
+  id "com.gradle.plugin-publish" version "0.9.10"
 }
 
 repositories {
@@ -25,8 +26,24 @@ dependencies {
 gradlePlugin {
   plugins {
     simplePlugin {
-      id = 'serverless-local-apigateway'
+      id = 'com.bytekast.serverless-local-apigateway'
       implementationClass = 'com.bytekast.gradle.ServerlessLocalApiGatewayPlugin'
+    }
+  }
+}
+
+
+pluginBundle {
+  website = 'https://github.com/bytekast/local-apigateway-gradle-plugin'
+  vcsUrl = 'https://github.com/bytekast/local-apigateway-gradle-plugin'
+
+  plugins {
+    serverlessLocalApiGatewayPlugin {
+      id = 'com.bytekast.serverless-local-apigateway'
+      displayName = 'Serverless Local API Gateway Plugin'
+      description = 'This plugin simulates AWS API Gateway for projects using the Serverless Framework'
+      tags = ['serverless','apigateway','lambda','aws','amazon']
+      version = "$project.version"
     }
   }
 }
