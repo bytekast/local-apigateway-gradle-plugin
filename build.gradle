@@ -47,3 +47,5 @@ pluginBundle {
     }
   }
 }
+
+afterReleaseBuild.finalizedBy(publishPlugins)
